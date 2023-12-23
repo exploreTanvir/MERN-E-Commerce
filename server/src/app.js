@@ -2,8 +2,10 @@ const express=require("express")
 const morgan = require('morgan')
 const bodyParser=require("body-parser")
 var createError = require('http-errors')
+const userRouter = require("./routers/userRouter")
 const app=express()
 app.use(morgan("dev"))
+app.use("/api/users",userRouter)
 
 
 const isLoggedIn=(req,res,next)=>{
@@ -36,8 +38,4 @@ app.use((err,req,res,next)=>{
 })
 
 
-app.listen(3001,()=>{
-    console.log("Server is running")
-})
-
-export default app
+module.exports=app
